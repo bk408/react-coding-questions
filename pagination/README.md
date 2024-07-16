@@ -56,7 +56,7 @@ const itemsPerPage = 5;
 
 ✨Calculate startIndex:
 
-const startIndex = (currentPage - 1) _ itemsPerPage
+const startIndex = (currentPage - 1) * itemsPerPage
 // for currentPage = 1
 // startIndex = (1 - 1) _ 5 => 0
 
@@ -74,7 +74,7 @@ currentData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
 
 ✨Calculate startIndex:
 
-const startIndex = (currentPage - 1) _ itemsPerPage;
+const startIndex = (currentPage - 1) * itemsPerPage;
 // For currentPage = 2:
 // startIndex = (2 - 1) _ 5 = 5
 
