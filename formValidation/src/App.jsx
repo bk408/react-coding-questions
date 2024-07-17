@@ -1,15 +1,12 @@
-
-import './App.css'
-import FormValid from './components/FormValid'
+import "./App.css";
+import NewForm from "./components/NewForm";
 
 function App() {
-  
-
   return (
     <>
-     <FormValid />
+      <NewForm />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
