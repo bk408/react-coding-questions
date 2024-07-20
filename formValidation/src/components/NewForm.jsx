@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NewForm = () => {
   const [formData, setFormData] = useState({
@@ -15,9 +17,10 @@ const NewForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form Data submitted successfully", formData);
+       toast.success("Form Data submitted successfully");
+      handleClick();
     } else {
-      console.log("Invalid form");
+       toast.error("Invalid data");
     }
   };
 
@@ -51,9 +54,9 @@ const NewForm = () => {
     if (!formData.password) {
       newError.password = <p className="err">Password is required</p>;
     } else if (formData.password.length < 8 || formData.password.length > 16) {
-      newError.password = 
+      newError.password = (
         <p className="err">Password length must be 8 to 16 characters</p>
-      
+      );
     }
 
     if (!formData.confirmPassword) {
@@ -84,77 +87,103 @@ const NewForm = () => {
     return Object.keys(newError).length === 0;
   };
 
+  const handleClick = () => {
+    setFormData({
+      name: "",
+      email: "",
+      mobileNumber: "",
+      dob: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setErrors({});
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {errors.name && <p> {errors.name} </p>}
-      </div>
+    <>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p> {errors.name} </p>}
+        </div>
 
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p> {errors.email} </p>}
-      </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p> {errors.email} </p>}
+        </div>
 
-      <div>
-        <label htmlFor="mobileNumber">Mobile Number:</label>
-        <input
-          type="number"
-          name="mobileNumber"
-          value={formData.mobileNumber}
-          onChange={handleChange}
-        />
-        {errors.mobileNumber && <p> {errors.mobileNumber} </p>}
-      </div>
+        <div>
+          <label htmlFor="mobileNumber">Mobile Number:</label>
+          <input
+            type="number"
+            name="mobileNumber"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+          />
+          {errors.mobileNumber && <p> {errors.mobileNumber} </p>}
+        </div>
 
-      <div>
-        <label htmlFor="dob">DOB:</label>
-        <input
-          type="date"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-        />
-        {errors.dob && <p> {errors.dob} </p>}
-      </div>
+        <div>
+          <label htmlFor="dob">DOB:</label>
+          <input
+            type="date"
+            name="dob"
+            value={formData.dob}
+            onChange={handleChange}
+          />
+          {errors.dob && <p> {errors.dob} </p>}
+        </div>
 
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p> {errors.password} </p>}
-      </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p> {errors.password} </p>}
+        </div>
 
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-        {errors.confirmPassword && <p> {errors.confirmPassword} </p>}
-      </div>
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+        <div>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          {errors.confirmPassword && <p> {errors.confirmPassword} </p>}
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
+    </>
   );
 };
 
