@@ -1,11 +1,10 @@
 import "./App.css";
-import Timer from "./components/Timer";
-
+import CountDownTimer from "./components/CountDownTimer";
 
 function App() {
   return (
     <>
-      <Timer />
+      <CountDownTimer />
     </>
   );
 }
